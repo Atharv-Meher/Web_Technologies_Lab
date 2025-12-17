@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raspberry Product Card</title>
+    <style>
+        body {
+            font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdf2f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .product-card {
+            width: 300px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px;
+            text-align: center;
+            
+            box-shadow: 0 10px 20px 9px rgba(0.32, 0.32, 0.32, 0.32);
+            transition: transform 0.3s ease;
+        }
+
+        /* Styling the Product Image */
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            background-color: #f9f9f9; 
+        }
+
+        /* Text Elements */
+        .product-title {
+            font-size: 2.0rem;
+            color: #d81b60; 
+            margin: 15px 0 10px;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .buy-btn {
+            background-color: #28fa47;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        /* Button Hover Effect */
+        .buy-btn:hover {
+            background-color: #338c27;
+            box-shadow: 0 4px 12px 4px rgba(144, 13, 61, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="product-card">
+        <img src="closeup-shot-fresh-ripe-raspberries.jpg" alt="Fresh Raspberries" class="product-image">
+        
+        <h2 class="product-title"><u><b> Fresh Raspberries </b></u></h2>
+        <p class="product-desc">
+            Hand-picked, Organic raspberries bursting with sweet and tangy flavor. Perfect for snacking or desserts.
+        </p>
+        
+        <div class="product-price">₹250 / kg</div>
+        
+        <button class="buy-btn">Buy Now</button>
+    </div>
+
+</body>
+</html>

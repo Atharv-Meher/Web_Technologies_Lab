@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Calibri, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            background-color: #f4f7f6;
+        }
+        form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box; 
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+            height: 100px;
+            
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <form action="/submit-form" method="POST">
+        <h2 align=center>Contact Us</h2>
+
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="user_name" placeholder="Your full name" required>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="user_email" placeholder="email@example.com" required>
+        </div>
+
+        <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="user_message" placeholder="How can we help you?" required></textarea>
+        </div>
+
+        <button type="submit">Send Message</button>
+    </form>
+
+</body>
+</html>
