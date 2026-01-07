@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multimedia Web Page</title>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            background-color: #f4f6f8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .media-section {
+            margin-bottom: 40px;
+        }
+
+        .time-display {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+	video {
+            width: 500px;
+            height: 480px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- AUDIO SECTION -->
+    <div class="media-section">
+        <h2>Audio Player</h2>
+
+        <audio id="audioPlayer" controls>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <div class="time-display">
+            Current Audio Time: <span id="audioTime">0:00</span>
+        </div>
+    </div>
+
+    <!-- VIDEO SECTION -->
+    <div class="media-section">
+        <h2>Video Player</h2>
+
+        <video id="videoPlayer" controls>
+            <source src="2835871-hd_1920_1080_25fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="time-display">
+            Current Video Time: <span id="videoTime">0:00</span>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    /* -------- AUDIO TIME DISPLAY -------- */
+    const audio = document.getElementById("audioPlayer");
+    const audioTime = document.getElementById("audioTime");
+
+    audio.addEventListener("timeupdate", () => {
+        const minutes = Math.floor(audio.currentTime / 60);
+        const seconds = Math.floor(audio.currentTime % 60)
+            .toString()
+            .padStart(2, "0");
+        audioTime.textContent = `${minutes}:${seconds}`;
+    });
+
+    /* -------- YOUTUBE VIDEO TIME DISPLAY -------- */
+    const video = document.getElementById("videoPlayer");
+    const videoTime = document.getElementById("videoTime");
+
+    video.addEventListener("timeupdate", () => {
+        const minutes = Math.floor(video.currentTime / 60);
+        const seconds = Math.floor(video.currentTime % 60)
+            .toString()
+            .padStart(2, "0");
+        videoTime.textContent = `${minutes}:${seconds}`;
+    });
+    }
+</script>
+
+</body>
+</html>

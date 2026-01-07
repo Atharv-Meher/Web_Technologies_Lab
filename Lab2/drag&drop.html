@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Board</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        
+        /* Input Section */
+        .input-area { margin-bottom: 30px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        input { padding: 10px; width: 250px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; }
+
+        /* Board Layout */
+        .board { display: flex; gap: 20px; width: 100%; max-width: 1000px; }
+        .column { flex: 1; background: #ebedf0; border-radius: 8px; min-height: 400px; padding: 15px; }
+        .column h3 { text-align: center; color: #333; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
+
+        /* Task Cards */
+        .task-card { 
+            background: white; padding: 15px; margin-top: 10px; border-radius: 6px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: grab; border-left: 5px solid #007bff; 
+        }
+        .task-card p { margin: 5px 0; }
+        .date-text { font-size: 0.8rem; color: #777; }
+        
+        /* Completed Styling */
+        .completed-task { background-color: #d4edda !important; border-left-color: #28a745 !important; }
+        .success-msg { color: #155724; font-size: 0.75rem; font-weight: bold; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="input-area">
+        <input type="text" id="taskInput" placeholder="Enter task name...">
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <div class="board">
+        <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>To Do</h3>
+        </div>
+        <div class="column" id="progress" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>In Progress</h3>
+        </div>
+        <div class="column" id="completed" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>Completed</h3>
+        </div>
+    </div>
+
+    <script>
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            input.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the page from refreshing
+        addTask();              // Calls your existing function
+    });
+            if (!input.value) return;
+
+            const taskId = 'task-' + Date.now();
+            const date = new Date().toLocaleDateString();
+
+            // Create Task Card
+            const card = document.createElement('div');
+            card.className = 'task-card';
+            card.id = taskId;
+            card.draggable = true;
+            card.ondragstart = drag;
+
+            card.innerHTML = `
+                <p><strong>${input.value}</strong></p>
+                <p class="date-text">Created: ${date}</p>
+                <div class="msg-container"></div>
+            `;
+
+            document.getElementById('todo').appendChild(card);
+            input.value = ''; // Clear input
+        }
+
+        // Drag & Drop Logic
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text");
+            const task = document.getElementById(data);
+            const targetColumn = ev.target.closest('.column');
+
+            if (targetColumn) {
+                targetColumn.appendChild(task);
+                
+                // Logic for "Completed" column
+                const msgContainer = task.querySelector('.msg-container');
+                if (targetColumn.id === 'completed') {
+                    task.classList.add('completed-task');
+                    msgContainer.innerHTML = '<p class="success-msg">Task Completed Successfully</p>';
+                } else {
+                    task.classList.remove('completed-task');
+                    msgContainer.innerHTML = '';
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
