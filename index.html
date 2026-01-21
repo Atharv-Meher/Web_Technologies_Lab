@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adaptive Registration Form</title>
+    <style>
+/* ---------- CSS Reset ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* ---------- Root Variables ---------- */
+:root {
+    --bg-main: #0f172a;          /* slate-900 */
+    --bg-card: #020617;          /* slate-950 */
+    --border-default: #1e293b;   /* slate-800 */
+    --border-focus: #38bdf8;     /* sky-400 */
+    --text-primary: #e5e7eb;     /* gray-200 */
+    --text-secondary: #94a3b8;   /* slate-400 */
+    --error: #ef4444;            /* red-500 */
+    --success: #22c55e;          /* green-500 */
+    --accent: #6366f1;           /* indigo-500 */
+}
+
+/* ---------- Page Layout ---------- */
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(
+        circle at top,
+        #020617 0%,
+        #020617 40%,
+        #020617 100%
+    );
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-primary);
+}
+
+/* ---------- Form Container ---------- */
+form {
+    width: 420px;
+    background: linear-gradient(
+        180deg,
+        rgba(2, 6, 23, 0.85),
+        rgba(2, 6, 23, 0.95)
+    );
+    border: 1px solid var(--border-default);
+    border-radius: 16px;
+    padding: 28px 26px 32px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+}
+
+/* ---------- Heading ---------- */
+form h2 {
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* ---------- Labels ---------- */
+label {
+    display: block;
+    margin-top: 14px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+}
+
+/* ---------- Inputs ---------- */
+input,
+select,
+textarea {
+    width: 100%;
+    margin-top: 6px;
+    padding: 11px 12px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-default);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #64748b;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    background: rgba(15, 23, 42, 0.85);
+}
+
+/* ---------- Feedback Text ---------- */
+.feedback {
+    min-height: 14px;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: var(--error);
+}
+
+/* ---------- Validation States ---------- */
+input.error,
+select.error,
+textarea.error {
+    border-color: var(--error);
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
+}
+
+input.success,
+select.success,
+textarea.success {
+    border-color: var(--success);
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.15);
+}
+
+/* ---------- Skills Section ---------- */
+#skillsContainer {
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ---------- Button ---------- */
+button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 12px;
+    background: linear-gradient(
+        135deg,
+        var(--accent),
+        #4f46e5
+    );
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: white;
+    cursor: pointer;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        opacity 0.15s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(79, 70, 229, 0.35);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ---------- Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<form id="registrationForm">
+    <h2>Register</h2>
+
+    <label>Name</label>
+    <input type="text" id="name">
+
+    <label>Email</label>
+    <input type="email" id="email">
+    <div class="feedback" id="emailFeedback"></div>
+
+    <label>Password</label>
+    <input type="password" id="password">
+    <div class="feedback" id="passwordFeedback"></div>
+
+    <label>Confirm Password</label>
+    <input type="password" id="confirmPassword">
+    <div class="feedback" id="confirmFeedback"></div>
+
+    <label>Age</label>
+    <input type="number" id="age">
+
+    <label>Role</label>
+    <select id="role">
+        <option value="">Select Role</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+        <option value="admin">Admin</option>
+    </select>
+
+    <div id="skillsContainer" class="hidden">
+        <label>Skills</label>
+        <textarea id="skills"></textarea>
+    </div>
+
+    <button type="submit">Register</button>
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>
