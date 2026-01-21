@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real-Time User Activity Monitor</title>
+
+    <style>
+        body {
+            font-family: Inter, system-ui, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .container {
+            width: 600px;
+            background: #020617;
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            margin-bottom: 16px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #6366f1;
+            color: white;
+            font-weight: 600;
+        }
+
+        .warning {
+            color: #ef4444;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            min-height: 18px;
+        }
+
+        .log {
+            max-height: 300px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            border-top: 1px solid #334155;
+            padding-top: 10px;
+        }
+
+        .log-entry {
+            margin-bottom: 6px;
+            border-bottom: 1px dashed #1e293b;
+            padding-bottom: 4px;
+        }
+
+        input {
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            background: #020617;
+            color: #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>User Activity Monitor</h2>
+
+    <div class="controls">
+        <button id="resetBtn">Reset Log</button>
+        <button id="exportBtn">Export Log</button>
+        <input placeholder="Click / focus here">
+    </div>
+
+    <div class="warning" id="warning"></div>
+    <div class="log" id="activityLog"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
