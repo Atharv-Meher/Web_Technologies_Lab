@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Intelligent Shopping Cart</title>
+    <title>Dynamic Survey Builder</title>
 
     <style>
         body {
@@ -14,68 +14,78 @@
             padding: 40px;
         }
 
-        .cart-container {
-            width: 480px;
+        .survey-container {
+            width: 520px;
             background: #020617;
             border-radius: 14px;
-            padding: 24px;
+            padding: 28px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         h2 {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
+        .question {
+            margin-bottom: 18px;
         }
 
-        input[type="number"] {
-            width: 60px;
-            padding: 6px;
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
         }
 
-        input, button {
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
             border-radius: 8px;
-            border: none;
-            padding: 6px 10px;
+            border: 1px solid #334155;
+            background: #020617;
+            color: #e5e7eb;
+        }
+
+        .options label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .error {
+            border-color: #ef4444;
+        }
+
+        .feedback {
+            font-size: 0.75rem;
+            color: #ef4444;
+            margin-top: 4px;
+            min-height: 14px;
         }
 
         button {
-            background: #ef4444;
-            color: white;
-            cursor: pointer;
-        }
-
-        .coupon {
             margin-top: 20px;
-        }
-
-        .total {
-            margin-top: 16px;
-            font-size: 1.1rem;
+            width: 100%;
+            padding: 12px;
+            background: #6366f1;
+            border: none;
+            border-radius: 10px;
+            color: white;
             font-weight: 600;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-<div class="cart-container">
-    <h2>Shopping Cart</h2>
-
-    <div id="cart"></div>
-
-    <div class="coupon">
-        <input id="coupon" placeholder="Enter coupon code">
-    </div>
-
-    <div class="total" id="total"></div>
+<div class="survey-container">
+    <h2>Survey</h2>
+    <form id="surveyForm"></form>
+    <button id="submitBtn">Submit Survey</button>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-
