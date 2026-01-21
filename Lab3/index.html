@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Intelligent Shopping Cart</title>
+
+    <style>
+        body {
+            font-family: Inter, system-ui, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .cart-container {
+            width: 480px;
+            background: #020617;
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            margin-bottom: 16px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            padding: 6px;
+        }
+
+        input, button {
+            border-radius: 8px;
+            border: none;
+            padding: 6px 10px;
+        }
+
+        button {
+            background: #ef4444;
+            color: white;
+            cursor: pointer;
+        }
+
+        .coupon {
+            margin-top: 20px;
+        }
+
+        .total {
+            margin-top: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cart-container">
+    <h2>Shopping Cart</h2>
+
+    <div id="cart"></div>
+
+    <div class="coupon">
+        <input id="coupon" placeholder="Enter coupon code">
+    </div>
+
+    <div class="total" id="total"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
