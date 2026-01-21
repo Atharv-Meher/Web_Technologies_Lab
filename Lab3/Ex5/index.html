@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-Stage Form Workflow</title>
+
+    <style>
+        body {
+            font-family: Inter, system-ui, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .form-container {
+            width: 520px;
+            background: #020617;
+            padding: 28px;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            margin-bottom: 16px;
+        }
+
+        .progress {
+            height: 8px;
+            background: #1e293b;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #6366f1;
+            transition: width 0.3s ease;
+        }
+
+        .stage {
+            display: none;
+        }
+
+        .stage.active {
+            display: block;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background: #020617;
+            color: #e5e7eb;
+        }
+
+        .feedback {
+            font-size: 0.75rem;
+            color: #ef4444;
+            min-height: 14px;
+            margin-top: 4px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: none;
+            background: #6366f1;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button[disabled] {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Registration Workflow</h2>
+
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <form id="multiForm">
+
+        <!-- Stage 1 -->
+        <div class="stage active" data-stage="0">
+            <label>Name</label>
+            <input id="name">
+            <div class="feedback"></div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="stage" data-stage="1">
+            <label>Email</label>
+            <input id="email">
+            <div class="feedback"></div>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="stage" data-stage="2">
+            <label>Password</label>
+            <input type="password" id="password">
+            <div class="feedback"></div>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="stage" data-stage="3">
+            <label>Age</label>
+            <input type="number" id="age">
+            <div class="feedback"></div>
+        </div>
+
+        <div class="buttons">
+            <button type="button" id="prevBtn" disabled>Previous</button>
+            <button type="button" id="nextBtn">Next</button>
+        </div>
+
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
