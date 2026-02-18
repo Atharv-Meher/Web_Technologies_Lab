@@ -1,0 +1,22 @@
+{
+  "students": [
+    {
+      "id": "101",
+      "name": "Rahul Sharma",
+      "department": "Computer Science",
+      "marks": 85
+    },
+    {
+      "id": "102",
+      "name": "Priya Reddy",
+      "department": "Electronics",
+      "marks": 92
+    },
+    {
+      "id": "103",
+      "name": "Arjun Patel",
+      "department": "Mechanical",
+      "marks": 78
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Modern Registration</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <form id="registrationForm" class="card">
+
+        <h2>Create Account</h2>
+
+        <div class="input-group">
+
+            <input type="text" id="username" required placeholder=" " autocomplete="off">
+            <label>Username</label>
+
+            <div class="status-container">
+                <div id="spinner" class="spinner"></div>
+                <span id="feedback"></span>
+            </div>
+
+        </div>
+
+        <button type="submit" id="submitBtn">
+            Register
+        </button>
+
+    </form>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+{
+  "products": [
+    {
+      "name": "Samsung Galaxy S23",
+      "price": 74999,
+      "category": "Smartphone"
+    },
+    {
+      "name": "Apple iPhone 14",
+      "price": 79999,
+      "category": "Smartphone"
+    },
+    {
+      "name": "Sony WH-1000XM5",
+      "price": 29999,
+      "category": "Headphones"
+    },
+    {
+      "name": "Dell Inspiron 15",
+      "price": 55999,
+      "category": "Laptop"
+    },
+    {
+      "name": "HP Pavilion x360",
+      "price": 62999,
+      "category": "Laptop"
+    },
+    {
+      "name": "boAt Rockerz 450",
+      "price": 1499,
+      "category": "Headphones"
+    },
+    {
+      "name": "LG UltraGear Monitor",
+      "price": 18999,
+      "category": "Monitor"
+    },
+    {
+      "name": "Apple iPad Air",
+      "price": 59999,
+      "category": "Tablet"
+    },
+    {
+      "name": "Samsung Smart TV 55\"",
+      "price": 54999,
+      "category": "Television"
+    },
+    {
+      "name": "Logitech MX Master 3",
+      "price": 8999,
+      "category": "Mouse"
+    }
+  ]
+}

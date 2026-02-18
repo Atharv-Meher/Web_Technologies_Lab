@@ -1,0 +1,59 @@
+body {
+    font-family: Arial;
+    background: linear-gradient(135deg,#11998e,#38ef7d);
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+}
+
+button {
+    background: #11998e;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0d7a6f;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+
+.edit {
+    background: orange;
+}
+
+.delete {
+    background: red;
+}
+
+#message {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}

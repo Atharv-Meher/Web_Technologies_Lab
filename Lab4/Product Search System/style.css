@@ -1,0 +1,58 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.container {
+    width: 450px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+#status {
+    margin-bottom: 10px;
+}
+
+.product {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.product-price {
+    color: #00ffcc;
+}
+
+.product-category {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.loading {
+    color: yellow;
+}
+
+.error {
+    color: red;
+}
+
+.no-results {
+    color: orange;
+}
