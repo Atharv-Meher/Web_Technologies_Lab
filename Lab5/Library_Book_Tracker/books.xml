@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+
+    <book>
+        <id>201</id>
+        <title>Wings of Fire</title>
+        <author>A. P. J. Abdul Kalam</author>
+        <status>Available</status>
+    </book>
+
+    <book>
+        <id>202</id>
+        <title>The Guide</title>
+        <author>R. K. Narayan</author>
+        <status>Issued</status>
+    </book>
+
+    <book>
+        <id>203</id>
+        <title>Train to Pakistan</title>
+        <author>Khushwant Singh</author>
+        <status>Available</status>
+    </book>
+
+</library>

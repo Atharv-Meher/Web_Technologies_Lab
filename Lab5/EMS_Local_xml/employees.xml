@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+
+    <employee>
+        <id>101</id>
+        <name>Rahul Sharma</name>
+        <department>IT</department>
+        <salary>65000</salary>
+    </employee>
+
+    <employee>
+        <id>102</id>
+        <name>Priya Reddy</name>
+        <department>HR</department>
+        <salary>55000</salary>
+    </employee>
+
+    <employee>
+        <id>103</id>
+        <name>Arjun Patel</name>
+        <department>Finance</department>
+        <salary>72000</salary>
+    </employee>
+
+    <employee>
+        <id>108</id>
+        <name>Atharv Meher</name>
+        <department>Quant</department>
+        <salary>100000</salary>
+    </employee>
+
+</employees>

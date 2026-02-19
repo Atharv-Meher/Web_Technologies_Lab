@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Product Inventory System</title>
+
+<style>
+
+body {
+    font-family: "Segoe UI", Arial;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    color: #60a5fa;
+}
+
+.form {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+}
+
+input {
+    padding: 10px;
+    margin: 5px;
+    background: #020617;
+    border: 1px solid #334155;
+    color: white;
+    border-radius: 6px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.add { background: #22c55e; }
+.update { background: #f59e0b; }
+.delete { background: #ef4444; }
+.search { background: #3b82f6; }
+.load { background: #06b6d4; }
+
+table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+    background: #1e293b;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #334155;
+}
+
+th {
+    background: #334155;
+    color: #93c5fd;
+}
+
+.low-stock {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.total {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #22c55e;
+}
+
+.message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.success { background: #14532d; }
+.error { background: #7f1d1d; }
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Product Inventory System</h1>
+
+<div class="form">
+
+<input id="id" placeholder="Product ID" type="number">
+<input id="name" placeholder="Product Name">
+<input id="category" placeholder="Category">
+<input id="price" placeholder="Price" type="number">
+<input id="stock" placeholder="Stock Quantity" type="number">
+
+<br>
+
+<button class="add" onclick="addProduct()">Add</button>
+<button class="update" onclick="updateProduct()">Update</button>
+<button class="delete" onclick="deleteProduct()">Delete</button>
+
+<input id="searchCategory" placeholder="Search Category">
+
+<button class="search" onclick="searchProduct()">Search</button>
+<button class="load" onclick="loadInventory()">Reload</button>
+
+<div id="msg"></div>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Category</th>
+<th>Price</th>
+<th>Stock</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody id="inventoryTable"></tbody>
+
+</table>
+
+<div class="total" id="totalValue"></div>
+
+</div>
+
+<script>
+
+let inventory = [];
+
+function showMessage(text,type)
+{
+    let msg=document.getElementById("msg");
+    msg.innerHTML=text;
+    msg.className="message "+type;
+}
+
+async function loadInventory()
+{
+    try
+    {
+        let response=await fetch("inventory.json");
+
+        if(!response.ok)
+            throw new Error("Cannot load JSON");
+
+        let data=await response.json();
+
+        inventory=data.products;
+
+        displayInventory(inventory);
+
+        showMessage("Inventory loaded","success");
+    }
+    catch(error)
+    {
+        showMessage(error.message,"error");
+    }
+}
+
+function displayInventory(data)
+{
+    let table=document.getElementById("inventoryTable");
+
+    table.innerHTML="";
+
+    let total=0;
+
+    data.forEach(p=>
+    {
+        let value=p.price*p.stock;
+
+        total+=value;
+
+        let lowStockClass=p.stock<5?"low-stock":"";
+
+        table.innerHTML+=`
+        <tr>
+        <td>${p.id}</td>
+        <td>${p.name}</td>
+        <td>${p.category}</td>
+        <td>₹${p.price}</td>
+        <td class="${lowStockClass}">${p.stock}</td>
+        <td>₹${value}</td>
+        </tr>`;
+    });
+
+    document.getElementById("totalValue")
+        .innerHTML="Total Inventory Value: ₹"+total;
+}
+
+function validate(id,name,category,price,stock)
+{
+    if(!id||!name||!category||price<0||stock<0)
+    {
+        showMessage("Invalid input","error");
+        return false;
+    }
+    return true;
+}
+
+function addProduct()
+{
+    let id=Number(idInput());
+    let name=nameInput();
+    let category=categoryInput();
+    let price=Number(priceInput());
+    let stock=Number(stockInput());
+
+    if(!validate(id,name,category,price,stock))
+        return;
+
+    if(inventory.find(p=>p.id===id))
+    {
+        showMessage("Product exists","error");
+        return;
+    }
+
+    inventory.push({id,name,category,price,stock});
+
+    displayInventory(inventory);
+
+    showMessage("Product added","success");
+}
+
+function updateProduct()
+{
+    let id=Number(idInput());
+
+    let product=inventory.find(p=>p.id===id);
+
+    if(!product)
+    {
+        showMessage("Not found","error");
+        return;
+    }
+
+    product.price=Number(priceInput())||product.price;
+    product.stock=Number(stockInput())||product.stock;
+
+    displayInventory(inventory);
+
+    showMessage("Product updated","success");
+}
+
+function deleteProduct()
+{
+    let id=Number(idInput());
+
+    let index=inventory.findIndex(p=>p.id===id);
+
+    if(index===-1)
+    {
+        showMessage("Not found","error");
+        return;
+    }
+
+    inventory.splice(index,1);
+
+    displayInventory(inventory);
+
+    showMessage("Product deleted","success");
+}
+
+function searchProduct()
+{
+    let category=document.getElementById("searchCategory")
+        .value.toLowerCase();
+
+    let filtered=inventory.filter(p=>
+        p.category.toLowerCase().includes(category)
+    );
+
+    displayInventory(filtered);
+}
+
+function idInput(){return document.getElementById("id").value;}
+function nameInput(){return document.getElementById("name").value;}
+function categoryInput(){return document.getElementById("category").value;}
+function priceInput(){return document.getElementById("price").value;}
+function stockInput(){return document.getElementById("stock").value;}
+
+window.onload=loadInventory;
+
+</script>
+
+</body>
+</html>

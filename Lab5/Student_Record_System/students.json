@@ -1,0 +1,34 @@
+{
+  "students": [
+    {
+      "id": 301,
+      "name": "Rahul Kumar",
+      "course": "B.Tech CSE",
+      "marks": 85
+    },
+    {
+      "id": 302,
+      "name": "Sneha Reddy",
+      "course": "B.Sc Computer Science",
+      "marks": 90
+    },
+    {
+      "id": 303,
+      "name": "Arjun Sharma",
+      "course": "BCA",
+      "marks": 78
+    },
+    {
+      "id": 304,
+      "name": "Gagan Chaudhary",
+      "course": "LLB",
+      "marks": 81
+    },
+    {
+      "id": 305,
+      "name": "Gagdish Mishra",
+      "course": "BBA",
+      "marks": 93
+    }
+  ]
+}

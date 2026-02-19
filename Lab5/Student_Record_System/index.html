@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Record System (JSON)</title>
+
+<style>
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Container */
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Title */
+
+h1 {
+    text-align: center;
+    color: #60a5fa;
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Form Card */
+
+.form {
+    background: #1e293b;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #334155;
+}
+
+/* Inputs */
+
+input {
+    padding: 10px 12px;
+    margin: 6px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #e2e8f0;
+    outline: none;
+    transition: 0.2s;
+}
+
+input::placeholder {
+    color: #94a3b8;
+}
+
+input:focus {
+    border-color: #3b82f6;
+    background: #020617;
+}
+
+/* Buttons */
+
+button {
+    padding: 10px 16px;
+    margin: 6px 4px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: 0.2s;
+}
+
+/* Button Colors */
+
+.add {
+    background: #22c55e;
+}
+
+.add:hover {
+    background: #16a34a;
+}
+
+.update {
+    background: #f59e0b;
+}
+
+.update:hover {
+    background: #d97706;
+}
+
+.delete {
+    background: #ef4444;
+}
+
+.delete:hover {
+    background: #dc2626;
+}
+
+.load {
+    background: #3b82f6;
+}
+
+.load:hover {
+    background: #2563eb;
+}
+
+/* Table */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e293b;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #334155;
+}
+
+/* Header */
+
+th {
+    background: #334155;
+    color: #93c5fd;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* Cells */
+
+td {
+    padding: 12px;
+    border-top: 1px solid #334155;
+}
+
+/* Hover */
+
+tr:hover {
+    background: #273449;
+}
+
+/* Message */
+
+.message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.success {
+    background: #14532d;
+    color: #86efac;
+}
+
+.error {
+    background: #7f1d1d;
+    color: #fca5a5;
+}
+
+</style>
+
+
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Student Record System</h1>
+
+<div class="form">
+
+<input type="number" id="id" placeholder="Student ID">
+
+<input type="text" id="name" placeholder="Student Name">
+
+<input type="text" id="course" placeholder="Course">
+
+<input type="number" id="marks" placeholder="Marks">
+
+<br>
+
+<button class="add" onclick="addStudent()">Add</button>
+<button class="update" onclick="updateStudent()">Update</button>
+<button class="delete" onclick="deleteStudent()">Delete</button>
+<button class="load" onclick="loadStudents()">Reload</button>
+
+<div id="msg"></div>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Course</th>
+<th>Marks</th>
+</tr>
+</thead>
+
+<tbody id="studentTable"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+let studentsData = [];
+
+function showMessage(text, type)
+{
+    let msg = document.getElementById("msg");
+    msg.innerHTML = text;
+    msg.className = "message " + type;
+}
+
+async function loadStudents()
+{
+    try
+    {
+        const response = await fetch("students.json");
+
+        if(!response.ok)
+            throw new Error("Cannot fetch JSON");
+
+        const data = await response.json();
+
+        studentsData = data.students;
+
+        displayStudents();
+
+        showMessage("Students loaded successfully", "success");
+    }
+    catch(error)
+    {
+        showMessage("JSON Error: " + error.message, "error");
+    }
+}
+
+function displayStudents()
+{
+    const table = document.getElementById("studentTable");
+
+    table.innerHTML = "";
+
+    if(studentsData.length === 0)
+    {
+        showMessage("No students found", "error");
+        return;
+    }
+
+    studentsData.forEach(student =>
+    {
+        table.innerHTML += `
+        <tr>
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.course}</td>
+            <td>${student.marks}</td>
+        </tr>`;
+    });
+}
+
+function validate(id, name, course, marks)
+{
+    if(!id || !name || !course || !marks)
+    {
+        showMessage("All fields required", "error");
+        return false;
+    }
+
+    if(marks < 0 || marks > 100)
+    {
+        showMessage("Marks must be 0–100", "error");
+        return false;
+    }
+
+    return true;
+}
+
+function addStudent()
+{
+    const id = Number(document.getElementById("id").value);
+    const name = document.getElementById("name").value;
+    const course = document.getElementById("course").value;
+    const marks = Number(document.getElementById("marks").value);
+
+    if(!validate(id,name,course,marks))
+        return;
+
+    if(studentsData.find(s => s.id === id))
+    {
+        showMessage("ID already exists", "error");
+        return;
+    }
+
+    studentsData.push({ id, name, course, marks });
+
+    displayStudents();
+
+    showMessage("Student added successfully", "success");
+}
+
+function updateStudent()
+{
+    const id = Number(document.getElementById("id").value);
+    const course = document.getElementById("course").value;
+    const marks = Number(document.getElementById("marks").value);
+
+    const student = studentsData.find(s => s.id === id);
+
+    if(!student)
+    {
+        showMessage("Student not found", "error");
+        return;
+    }
+
+    if(course)
+        student.course = course;
+
+    if(marks)
+        student.marks = marks;
+
+    displayStudents();
+
+    showMessage("Student updated successfully", "success");
+}
+
+function deleteStudent()
+{
+    const id = Number(document.getElementById("id").value);
+
+    const index = studentsData.findIndex(s => s.id === id);
+
+    if(index === -1)
+    {
+        showMessage("Student not found", "error");
+        return;
+    }
+
+    studentsData.splice(index,1);
+
+    displayStudents();
+
+    showMessage("Student deleted successfully", "success");
+}
+
+window.onload = loadStudents;
+
+</script>
+
+</body>
+</html>

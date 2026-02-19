@@ -1,0 +1,46 @@
+{
+  "products": [
+    {
+      "id": 401,
+      "name": "Laptop",
+      "category": "Electronics",
+      "price": 65000,
+      "stock": 8
+    },
+    {
+      "id": 402,
+      "name": "Wireless Mouse",
+      "category": "Electronics",
+      "price": 1200,
+      "stock": 25
+    },
+    {
+      "id": 403,
+      "name": "Office Chair",
+      "category": "Furniture",
+      "price": 8500,
+      "stock": 4
+    },
+    {
+      "id": 404,
+      "name": "Notebook Pack",
+      "category": "Stationery",
+      "price": 300,
+      "stock": 50
+    },
+    {
+      "id": 405,
+      "name": "Pen",
+      "category": "Stationery",
+      "price": 30,
+      "stock": 80
+    },
+    {
+      "id": 406,
+      "name": "Eraser",
+      "category": "Stationery",
+      "price": 10,
+      "stock": 50
+    }
+  ]
+}
