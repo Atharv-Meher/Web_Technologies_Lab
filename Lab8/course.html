@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Course Enrollment System</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #e6ccff, #cc99ff);
+    }
+
+    .container {
+        width: 500px;
+        margin: 50px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 5px 18px rgba(0,0,0,0.15);
+        text-align: center;
+    }
+
+    h2 {
+        color: #4b0082;
+    }
+
+    input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        padding: 10px 20px;
+        background: linear-gradient(to right, #9933ff, #cc66ff);
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .info {
+        margin-top: 15px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    table {
+        margin: 20px auto;
+        border-collapse: collapse;
+        width: 100%;
+        background: #f5ebff;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th {
+        background: #9933ff;
+        color: white;
+        padding: 10px;
+    }
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Course Enrollment System</h2>
+
+    <input type="text" id="studentName" placeholder="Enter Student Name">
+    <button onclick="enrollStudent()">Enroll</button>
+
+    <div class="info" id="courseInfo"></div>
+    <div class="info" id="status"></div>
+    <div class="info" id="seats"></div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+            </tr>
+        </thead>
+        <tbody id="studentTable"></tbody>
+    </table>
+</div>
+
+<script>
+    // ES6 Class
+    class Course {
+        constructor(courseName, instructor, totalSeats) {
+            this.courseName = courseName;
+            this.instructor = instructor;
+            this.totalSeats = totalSeats;
+            this.enrolledStudents = [];
+        }
+
+        displayCourse() {
+            return `Course: ${this.courseName} \n Instructor: ${this.instructor}`;
+        }
+
+        seatsLeft() {
+            return this.totalSeats - this.enrolledStudents.length;
+        }
+    }
+
+    // Initialize Course
+    const course1 = new Course("Web Technologies", "Dr. Gopikrishnan S", 5);
+
+    // Display course info initially
+    document.getElementById("courseInfo").textContent = course1.displayCourse();
+    document.getElementById("seats").textContent = `Seats Left: ${course1.seatsLeft()}`;
+
+    function enrollStudent() {
+        let name = document.getElementById("studentName").value;
+
+        let enrollCourse = new Promise((resolve, reject) => {
+            if (course1.seatsLeft() > 0) {
+                resolve("Enrollment Successful");
+            } else {
+                reject("Course Full");
+            }
+        });
+
+        enrollCourse
+            .then(msg => {
+                course1.enrolledStudents.push(name);
+
+                console.log(msg);
+                document.getElementById("status").textContent = msg;
+
+                // Add student to table
+                const row = `<tr><td>${name}</td></tr>`;
+                document.getElementById("studentTable").innerHTML += row;
+
+                // Update seats
+                document.getElementById("seats").textContent =
+                    `Seats Left: ${course1.seatsLeft()}`;
+            })
+            .catch(err => {
+                console.log(err);
+                document.getElementById("status").textContent = err;
+            });
+
+        // Clear input
+        document.getElementById("studentName").value = "";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Object Demo</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #e6ccff, #cc99ff);
+    }
+
+    .container {
+        width: 420px;
+        margin: 60px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 5px 18px rgba(0,0,0,0.15);
+        text-align: center;
+    }
+
+    h2 {
+        color: #4b0082;
+    }
+
+    input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin-top: 10px;
+        background: linear-gradient(to right, #9933ff, #cc66ff);
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .output {
+        margin-top: 20px;
+        text-align: left;
+        background: #f5ebff;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: monospace;
+        white-space: pre-wrap;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Student Object</h2>
+
+    <input type="number" id="id" placeholder="Enter ID">
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="text" id="dept" placeholder="Enter Department">
+    <input type="number" id="marks" placeholder="Enter Marks">
+
+    <button onclick="processStudent()">Process Object</button>
+
+    <div class="output" id="output"></div>
+</div>
+
+<script>
+    const calculateGrade = (marks) => {
+        if (marks >= 90) return "A";
+        else if (marks >= 75) return "B";
+        else if (marks >= 60) return "C";
+        else return "D";
+    };
+
+    function processStudent() {
+
+        // Create object from input
+        const student = {
+            id: Number(document.getElementById("id").value),
+            name: document.getElementById("name").value,
+            department: document.getElementById("dept").value,
+            marks: Number(document.getElementById("marks").value)
+        };
+
+        // Destructuring
+        const { id, name, department, marks } = student;
+
+        // Console output
+        console.log(`${id} ${name} ${department} ${marks}`);
+
+        // Spread + add grade
+        const updatedStudent = {
+            ...student,
+            grade: calculateGrade(marks)
+        };
+
+        console.log(updatedStudent);
+
+        // Display on UI
+        document.getElementById("output").textContent =
+`Extracted Values:
+${id} ${name} ${department} ${marks}
+
+Updated Object:
+${JSON.stringify(updatedStudent, null, 2)}`;
+    }
+</script>
+
+</body>
+</html>
