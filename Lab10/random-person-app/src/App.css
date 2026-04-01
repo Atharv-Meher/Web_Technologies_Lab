@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  color: #eaf6ff;
+}
+
+/* Layout */
+.app {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* Heading */
+.heading {
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: #6dd5fa;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: 0.3s;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Image */
+.card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid #6dd5fa;
+}
+
+/* Text */
+.card h3 {
+  margin: 10px 0 5px;
+  color: #9be7ff;
+}
+
+.card p {
+  font-size: 14px;
+  color: #cfe9ff;
+}
+
+.location {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Status */
+.status {
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+.status.error {
+  color: #ff6b6b;
+}

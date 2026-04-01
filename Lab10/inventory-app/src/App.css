@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #121212, #1e1e2f, #1a1a1a);
+  color: #eaeaea;
+}
+
+/* Layout */
+.app {
+  max-width: 600px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* Heading */
+.heading {
+  font-size: 36px;
+  margin-bottom: 25px;
+  color: #6dd5fa;
+  letter-spacing: 1px;
+}
+
+/* Input box */
+.input-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.input-box input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.input-box input:focus {
+  box-shadow: 0 0 8px #6dd5fa;
+}
+
+.input-box button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6dd5fa, #2980b9);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.input-box button:hover {
+  transform: scale(1.05);
+}
+
+/* List */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Item */
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #242424;
+  padding: 12px 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.list-item:hover {
+  background: #2f2f2f;
+}
+
+/* Remove button */
+.list-item button {
+  background: transparent;
+  border: none;
+  color: #ff6b6b;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.list-item button:hover {
+  transform: scale(1.2);
+}
+
+/* Empty state */
+.empty {
+  margin-top: 20px;
+  color: #888;
+}
