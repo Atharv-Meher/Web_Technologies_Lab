@@ -1,0 +1,60 @@
+/* Import gothic font */
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Cinzel:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #0a0a0a, #1a0000);
+  color: #e6e6e6;
+  font-family: 'Cinzel', serif;
+}
+
+/* Main container */
+.gothic-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Title */
+.title {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: 42px;
+  color: #b30000;
+  text-shadow: 0 0 10px #660000, 0 0 20px #330000;
+  margin-bottom: 30px;
+}
+
+/* Card */
+.profile-card {
+  background: rgba(20, 0, 0, 0.85);
+  border: 2px solid #800000;
+  border-radius: 12px;
+  padding: 30px;
+  width: 350px;
+  box-shadow: 
+    0 0 15px #800000,
+    inset 0 0 10px #400000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.profile-card:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 0 25px #b30000,
+    inset 0 0 15px #660000;
+}
+
+/* Text styling */
+.profile-card p {
+  font-size: 18px;
+  margin: 12px 0;
+  letter-spacing: 1px;
+}
+
+.profile-card span {
+  color: #ff4d4d;
+  font-weight: bold;
+}

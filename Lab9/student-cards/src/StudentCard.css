@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@500&display=swap');
+
+.card {
+  position: relative;
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 24px;
+  width: 280px;
+  overflow: hidden;
+    margin:auto;
+  border: 1px solid rgba(255, 0, 0, 0.15);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    inset 0 0 20px rgba(255, 0, 0, 0.08);
+
+  transition: all 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 1),
+    0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+/* Subtle glow effect */
+.card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,0,0,0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.card:hover .card-glow {
+  opacity: 1;
+}
+
+/* Name */
+.card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  text-align: center;
+  color: #ff4d4d;
+  letter-spacing: 1px;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #ff4d4d, transparent);
+  margin: 12px 0 16px;
+}
+
+/* Items */
+.card-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-family: 'Cinzel', serif;
+  color: #ddd;
+}
+
+.card-item span {
+  color: #ff6666;
+  font-size: 14px;
+  opacity: 0.8;
+}

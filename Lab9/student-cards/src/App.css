@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1a0000, #000000);
+  font-family: 'Cinzel', serif;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 40px 10px;
+  text-align: center;
+}
+
+/* Heading */
+.heading {
+  font-size: 40px;
+  color: #ff4d4d;
+  margin-bottom: 30px;
+}
+
+/* FULL WIDTH GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  width: 100%;
+  padding: 0 40px;
+  box-sizing: border-box;
+}

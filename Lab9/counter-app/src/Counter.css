@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+/* Main container */
+.counter-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Title */
+.title {
+  font-size: 40px;
+  color: #7fd8ff;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(127, 216, 255, 0.5);
+}
+
+/* Counter box */
+.counter-box {
+  background: rgba(20, 30, 40, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 40px;
+  width: 300px;
+  text-align: center;
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 20px rgba(0, 150, 255, 0.2);
+}
+
+/* Counter value */
+.count {
+  font-size: 60px;
+  color: #00c6ff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px rgba(0, 198, 255, 0.7);
+}
+
+/* Buttons container */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+/* Buttons */
+.btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Decrease button */
+.decrease {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+}
+
+.decrease:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 75, 43, 0.7);
+}
+
+/* Increase button */
+.increase {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+}
+
+.increase:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 198, 255, 0.7);
+}
